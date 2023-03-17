@@ -1,0 +1,18 @@
+#service 
+apiVersion: v1
+kind: Service
+metadata:
+   #the Serivce Name- it should match with the lable name of the deployment 
+  name: market-data-deployment
+spec:
+  #type of the service
+  type: ClusterIP
+  selector:
+    app: market-data-deployment
+  ports:
+  - port: 8080
+    targetPort: 3000
+    protocol: TCP
+    nodePort: 31000
+status:
+  loadBalancer: {}

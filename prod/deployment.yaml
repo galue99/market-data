@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: market-data-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: market-data-deployment
+  template:
+    metadata:
+      labels:
+        app: market-data-deployment
+    spec:
+      containers:
+        - name: market-data-deployment
+          image: tongzahub/argocd-react:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
