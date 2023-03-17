@@ -1,21 +1,20 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: market-data-deployment
+  name: guestbook-ui
 spec:
-  replicas: 2
+  replicas: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: market-data-deployment
+      app: guestbook-ui
   template:
     metadata:
       labels:
-        app: market-data-deployment
+        app: guestbook-ui
     spec:
       containers:
-        - name: market-data-deployment
-          image: tongzahub/argocd-react:latest
-          imagePullPolicy: Always
+        - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+          name: guestbook-ui
           ports:
             - containerPort: 80
-      restartPolicy: Always
