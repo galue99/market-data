@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: market-data-shell
 spec:
+  type: Nodeport
   ports:
     - name: http
       nodePort: 30531
